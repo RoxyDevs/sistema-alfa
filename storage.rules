@@ -1,0 +1,17 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    // Permitir lectura pública de archivos en ebooks/ (para enlaces de descarga)
+    match /ebooks/{fileName} {
+      allow read: if true;
+      allow write: if request.resource.size < 50 * 1024 * 1024 // 50MB max
+                    && request.resource.contentType.matches('application/pdf');
+      allow delete: if false;
+    }
+    // Resto de archivos - solo lectura pública, escritura denegada
+    match /{allPaths=**} {
+      allow read: if true;
+      allow write: if false;
+    }
+  }
+}

@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SISTEMA ALFA | El método definitivo para alcanzar el éxito empresarial</title>
+    <meta name="description" content="Sistema ALFA: El protocolo de 21 días que combina biohacking, nutrición inteligente y rutinas de élite para emprendedores. Optimiza tu mente, energía y sistemas.">
+    <meta name="keywords" content="biohacking, emprendimiento, éxito empresarial, productividad, alto rendimiento, nutrición, rutinas, sistema alfa, ebook">
+    <meta name="author" content="Roxana Rolón">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sistemaalfa.com/">
+    <meta property="og:title" content="SISTEMA ALFA | El método definitivo para alcanzar el éxito empresarial">
+    <meta property="og:description" content="Un protocolo práctico de 21 días que combina biohacking, nutrición inteligente y rutinas de élite para que dejes de trabajar agotado y rindas como un CEO.">
+    <meta property="og:image" content="https://sistemaalfa.com/assets/images/Imagen2.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://sistemaalfa.com/">
+    <meta property="twitter:title" content="SISTEMA ALFA | El método definitivo para alcanzar el éxito empresarial">
+    <meta property="twitter:description" content="Un protocolo práctico de 21 días que combina biohacking, nutrición inteligente y rutinas de élite para emprendedores.">
+    <meta property="twitter:image" content="https://sistemaalfa.com/assets/images/Imagen2.png">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #06B6D4;
+            --secondary: #22D3EE;
+            --accent: #A5F3FC;
+            --bg: #0A0A0A;
+            --bg-soft: #141414;
+            --text: #F9FAFB;
+            --text-dim: #9CA3AF;
+            --white: #FFFFFF;
+            --shadow-neon: 0 0 20px rgba(6, 182, 212, 0.4);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background-color: var(--bg); 
+            color: var(--text); 
+            font-family: 'Inter', sans-serif; 
+            line-height: 1.6; 
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 700; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        
+        .image-placeholder {
+            border: 2px dashed var(--primary);
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            background: rgba(6, 182, 212, 0.05);
+            margin: 20px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--bg);
+            padding: 18px 36px;
+            border-radius: 50px;
+            font-weight: 800;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-neon);
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(34, 211, 238, 0.6);
+        }
+
+        /* Hero Section */
+        header.hero {
+            padding: 100px 0 60px;
+            text-align: center;
+            background: radial-gradient(circle at top, #0f1c1f 0%, #0a0a0a 100%);
+        }
+
+        .hero h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); margin-bottom: 20px; color: var(--white); }
+        .hero .headline-main { color: var(--primary); display: block; }
+        .hero p.lead { font-size: 1.25rem; max-width: 800px; margin: 0 auto 30px; color: var(--text-dim); }
+        .hero .sub-p { font-size: 1.1rem; margin-bottom: 40px; border-left: 3px solid var(--primary); padding-left: 20px; display: inline-block; text-align: left; max-width: 600px; }
+
+        /* Subheadline Section */
+        .subheadline-sec { background: var(--bg-soft); padding: 80px 0; text-align: center; }
+        .subheadline-sec h2 { font-size: 2rem; margin-bottom: 30px; color: var(--accent); font-style: italic; }
+
+        /* Problema */
+        .problema { padding: 80px 0; }
+        .prob-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 40px; }
+        .prob-card { background: #111; padding: 30px; border-radius: 8px; border-left: 4px solid #ef4444; }
+        .prob-card span { color: #ef4444; font-weight: bold; margin-right: 10px; }
+
+        /* Solucion */
+        .solucion { padding: 80px 0; text-align: center; background: linear-gradient(to bottom, var(--bg), #052c33, var(--bg)); }
+        .solucion h2 { font-size: 2.5rem; margin-bottom: 20px; }
+
+        /* Beneficios */
+        .beneficios { padding: 80px 0; }
+        .ben-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-top: 40px; }
+        .ben-item { display: flex; align-items: center; gap: 10px; background: rgba(34, 211, 238, 0.05); padding: 15px; border-radius: 8px; }
+        .ben-item svg { color: var(--primary); min-width: 24px; }
+
+        /* Modulos */
+        .modulos { padding: 80px 0; background: var(--bg-soft); }
+        .mod-card { background: var(--bg); border: 1px solid #333; padding: 40px; border-radius: 16px; margin-bottom: 30px; transition: 0.3s; }
+        .mod-card:hover { border-color: var(--primary); }
+        .mod-card h3 { color: var(--primary); margin-bottom: 15px; }
+        .mod-card ul { list-style: none; margin-left: 0; }
+        .mod-card li { margin-bottom: 8px; color: var(--text-dim); }
+        .mod-card li::before { content: "→"; margin-right: 10px; color: var(--secondary); }
+
+        /* Comparacion */
+        .comparacion { padding: 80px 0; }
+        table { width: 100%; border-collapse: collapse; margin-top: 40px; background: #111; border-radius: 12px; overflow: hidden; }
+        th, td { padding: 20px; text-align: left; border-bottom: 1px solid #222; }
+        th { background: var(--bg-soft); color: var(--primary); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; }
+        .td-antes { color: #999; }
+        .td-despues { color: var(--secondary); font-weight: 600; }
+
+        /* Testimonios */
+        .testimonios { padding: 80px 0; background: var(--bg-soft); }
+        .test-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .test-card { background: var(--bg); padding: 30px; border-radius: 12px; font-style: italic; position: relative; }
+        .test-card footer { margin-top: 20px; font-style: normal; color: var(--primary); font-weight: 700; }
+
+        /* FAQ */
+        .faq { padding: 80px 0; }
+        .faq-item { margin-bottom: 20px; border-bottom: 1px solid #222; padding-bottom: 15px; }
+        .faq-item h4 { color: var(--accent); margin-bottom: 10px; }
+
+        /* Oferta */
+        .oferta { padding: 80px 0; text-align: center; background: radial-gradient(circle, #1a2e33 0%, #0a0a0a 100%); border: 2px solid var(--primary); border-radius: 20px; margin: 40px 20px; }
+        .price-tag { font-size: 4rem; font-weight: 800; color: var(--white); margin: 20px 0; text-shadow: var(--shadow-neon); }
+        .price-old { text-decoration: line-through; color: #ef4444; font-size: 1.5rem; }
+
+        /* Urgencia */
+        .urgencia { background: #ef4444; color: white; padding: 15px; text-align: center; font-weight: 800; }
+
+        /* Delivery */
+        .entrega { padding: 80px 0; background: linear-gradient(135deg, rgba(6, 182, 212, 0.08), rgba(34, 211, 238, 0.03)); }
+        .entrega-card { background: rgba(17, 17, 17, 0.95); border: 1px solid rgba(6, 182, 212, 0.3); border-radius: 20px; padding: 30px; box-shadow: 0 0 30px rgba(6, 182, 212, 0.15); margin-top: 30px; }
+        .field { display: flex; flex-direction: column; gap: 8px; margin-bottom: 18px; }
+        .field span { color: var(--accent); font-weight: 600; }
+        .field input { background: #0f172a; border: 1px solid #334155; color: var(--text); padding: 14px 16px; border-radius: 10px; font-size: 1rem; }
+        .field input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 2px rgba(6, 182, 212, 0.2); }
+        .delivery-status { margin-top: 20px; padding: 14px 16px; border-radius: 10px; background: rgba(15, 23, 42, 0.9); color: var(--text-dim); border: 1px solid #334155; }
+        .delivery-status.success { color: #86efac; border-color: rgba(34, 197, 94, 0.3); }
+        .delivery-status.error { color: #fda4af; border-color: rgba(248, 113, 113, 0.3); }
+        .delivery-link { margin-top: 16px; }
+
+        /* Footer */
+        footer.main-footer { padding: 60px 0; text-align: center; border-top: 1px solid #222; color: #555; font-size: 0.9rem; }
+        
+        .fade-in { animation: fadeIn 1s ease-in forwards; opacity: 0; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .price-tag { font-size: 3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="urgencia">
+        ⚠️ OFERTA DE LANZAMIENTO: 90% DE DESCUENTO POR TIEMPO LIMITADO
+    </section>
+
+    <header class="hero">
+        <div class="container fade-in">
+            <h1>SISTEMA <span class="headline-main">ALFA</span></h1>
+            <p class="lead">El método definitivo para alcanzar el éxito empresarial optimizando tu activo más valioso: tú mismo.</p>
+            
+            <img src="assets/images/Imagen2.png" alt="Sistema Alfa - Método definitivo para el éxito empresarial" style="display:block;width:100%;max-width:100%;object-fit:cover;border-radius:12px;margin:0 auto;" />
+
+            <p class="sub-p">Un protocolo práctico de 21 días que combina biohacking, nutrición inteligente y rutinas de élite para que dejes de trabajar agotado y rindas como un CEO.</p>
+            <br>
+            <a href="https://pay.hotmart.com/B106734066W?off=nmse0e76" class="cta-button">🚀 QUIERO MI COPIA AHORA</a>
+            <p style="margin-top: 15px; font-size: 0.8rem; color: var(--text-dim);">Descarga inmediata • Acceso de por vida • PDF compatible</p>
+        </div>
+    </header>
+
+    <section class="subheadline-sec">
+        <div class="container">
+            <h2>"Descubre el sistema que utilizan los emprendedores más exitosos para construir negocios rentables sin depender de la suerte."</h2>
+            <p style="max-width: 800px; margin: 0 auto;">Ser emprendedor exige una mente alerta y un cuerpo con energía. Sistema ALFA reúne las tres potencias en un protocolo diseñado para elevar tu rendimiento personal y empresarial.</p>
+        </div>
+    </section>
+
+    <section class="problema">
+        <div class="container">
+            <h2 style="text-align: center;">¿Te identificas con alguna de estas situaciones?</h2>
+            <p style="text-align: center; color: var(--text-dim);">Has trabajado duro, pero el progreso se siente estancado.</p>
+            
+            <div class="prob-grid">
+                <div class="prob-card"><span>❌</span> Tu negocio genera ingresos inconsistentes.</div>
+                <div class="prob-card"><span>❌</span> Sientes que trabajas más horas pero ganas lo mismo.</div>
+                <div class="prob-card"><span>❌</span> No sabes cómo diferenciarte de la competencia.</div>
+                <div class="prob-card"><span>❌</span> Estás agotado de consumir contenido que no explica el "cómo".</div>
+                <div class="prob-card"><span>❌</span> Tomas decisiones basadas en intuición y no en estrategia.</div>
+                <div class="prob-card"><span>❌</span> La fatiga mental te impide avanzar después de las 3 PM.</div>
+            </div>
+            
+            <div style="margin-top: 50px; text-align: center;">
+                <p>El problema no eres tú. El problema es que <strong>nadie te enseñó un sistema de alto rendimiento cerebral.</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <section class="solucion">
+        <div class="container">
+            <h2>Presentando: SISTEMA ALFA</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 30px;">No es otro libro de motivación. Es ingeniería humana aplicada al negocio.</p>
+            <div style="max-width: 600px; margin: 0 auto 40px;">
+                <img src="assets/images/imagen1.png" alt="Sistema ALFA - eBook Mockup" style="width:100%;border-radius:12px;box-shadow:0 0 30px rgba(6,182,212,0.3);">
+            </div>
+            <p>Sistema ALFA optimiza <strong>Tu Mente</strong>, <strong>Tu Energía</strong> y <strong>Tus Sistemas</strong>. Convertimos tu potencial en acción concreta en solo 21 días.</p>
+        </div>
+    </section>
+
+    <section class="beneficios">
+        <div class="container">
+            <h2 style="text-align: center;">¿Qué lograrás con Sistema ALFA?</h2>
+            <div class="ben-list">
+                <div class="ben-item"><svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg> Recuperar energía mental y física.</div>
+                <div class="ben-item"><svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg> Mejorar tu concentración y reducir distracciones.</div>
+                <div class="ben-item"><svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg> Tomar decisiones claras bajo presión.</div>
+                <div class="ben-item"><svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg> Crear mañanas estratégicas (Morning Protocol).</div>
+                <div class="ben-item"><svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg> Dormir mejor y recuperarte más rápido.</div>
+                <div class="ben-item"><svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg> Eliminar la dependencia de la motivación.</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="modulos">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 50px;">Contenido del Sistema ALFA</h2>
+            
+            <div class="mod-card">
+                <h3>MÓDULO 1: BIOHACKING MENTAL</h3>
+                <p>Tu cerebro como activo más valioso. Protocolos de meditación, respiración estratégica y auditoría de estado mental para dominar tu enfoque.</p>
+                <ul>
+                    <li>Optimización de claridad mental.</li>
+                    <li>Técnica respiración 4-7-8 para estrés.</li>
+                    <li>Auditoría de fugas energéticas.</li>
+                </ul>
+            </div>
+
+            <div class="mod-card">
+                <h3>MÓDULO 2: NUTRICIÓN NEUROECONÓMICA</h3>
+                <p>Combustible para generar ingresos. Aprende qué comer para mantener el estado de flow sin bajones de azúcar ni niebla mental.</p>
+                <ul>
+                    <li>El Protocolo Alfa de desayuno.</li>
+                    <li>Ayuno intermitente para altos ejecutivos.</li>
+                    <li>Stack de suplementación inteligente.</li>
+                </ul>
+            </div>
+
+            <div class="mod-card">
+                <h3>MÓDULO 3: RUTINAS DE ALTO RENDIMIENTO</h3>
+                <p>Sistemas que funcionan en piloto automático. Diseña tu día para ganar antes del mediodía.</p>
+                <ul>
+                    <li>Deep Work: Bloques de trabajo profundo.</li>
+                    <li>Gestión energética vs. Gestión del tiempo.</li>
+                    <li>Checklist de implementación diaria.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="comparacion">
+        <div class="container">
+            <h2 style="text-align: center;">La Transformación</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Área</th>
+                        <th>Antes del Sistema ALFA</th>
+                        <th>Después con Sistema ALFA</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Energía</td>
+                        <td class="td-antes">Agotamiento constante</td>
+                        <td class="td-despues">Energía estable 8h+</td>
+                    </tr>
+                    <tr>
+                        <td>Enfoque</td>
+                        <td class="td-antes">Distracciones de TikTok/Email</td>
+                        <td class="td-despues">Foco profundo láser</td>
+                    </tr>
+                    <tr>
+                        <td>Mañanas</td>
+                        <td class="td-antes">Reaccionar a notificaciones</td>
+                        <td class="td-despues">Morning Protocol Estratégico</td>
+                    </tr>
+                    <tr>
+                        <td>Resultados</td>
+                        <td class="td-antes">Inconsistentes</td>
+                        <td class="td-despues">Progreso Sostenible</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="testimonios">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 40px;">Voces del Éxito</h2>
+            <div class="test-grid">
+                <div class="test-card">
+                    <p>“Por primera vez sentí que tenía energía estable durante todo el día. Dejé de depender del café para rendir.”</p>
+                    <footer>— Emprendedor Digital</footer>
+                </div>
+                <div class="test-card">
+                    <p>“El Morning Protocol ALFA cambió completamente la forma en la que comienzo mis días. Ahora termino mis tareas antes de las 11 AM.”</p>
+                    <footer>— Creadora de Contenido</footer>
+                </div>
+                <div class="test-card">
+                    <p>“Este ebook vale muchísimo más de lo que cuesta. Es un sistema completo, no solo consejos sueltos.”</p>
+                    <footer>— Dueño de Negocio</footer>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Testimonial Section -->
+    <section class="video-testimonios" style="padding: 80px 0;">
+        <div class="container" style="text-align: center;">
+            <h2 style="margin-bottom: 15px;">Mira lo que dicen de Sistema ALFA</h2>
+            <p style="color: var(--text-dim); margin-bottom: 40px;">Testimonios en video de emprendedores que ya transformaron su rendimiento</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px;">
+                <div style="background: var(--bg-soft); border-radius: 16px; overflow: hidden; border: 1px solid #333;">
+                    <video controls style="width:100%;display:block;" poster="assets/images/imagen4.png">
+                        <source src="assets/Cinematic_medium_shot_of_a_cha.mp4" type="video/mp4">
+                        Tu navegador no soporta video.
+                    </video>
+                    <div style="padding: 15px;">
+                        <p style="color: var(--accent); font-weight: 600;">💬 Testimonio de emprendedor</p>
+                    </div>
+                </div>
+                
+                <div style="background: var(--bg-soft); border-radius: 16px; overflow: hidden; border: 1px solid #333;">
+                    <video controls style="width:100%;display:block;" poster="assets/images/imagen3.png">
+                        <source src="assets/in_spanish_using_my_e_book_for.mp4" type="video/mp4">
+                        Tu navegador no soporta video.
+                    </video>
+                    <div style="padding: 15px;">
+                        <p style="color: var(--accent); font-weight: 600;">💬 Experiencia con el método ALFA</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 40px;">Preguntas Frecuentes</h2>
+            <div class="faq-item">
+                <h4>¿Es un libro físico?</h4>
+                <p>No. Es un eBook digital en formato PDF de alta calidad que recibirás inmediatamente después de la compra.</p>
+            </div>
+            <div class="faq-item">
+                <h4>¿Cuánto dura el programa?</h4>
+                <p>El protocolo base es de 21 días, diseñado para instalar hábitos permanentes que puedes adaptar a tu ritmo.</p>
+            </div>
+            <div class="faq-item">
+                <h4>¿Puedo leerlo desde el celular?</h4>
+                <p>Sí, está totalmente optimizado para verse perfecto en cualquier smartphone, tablet o PC.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="container" style="text-align: center;">
+        <div style="display:inline-flex;align-items:center;gap:15px;background:rgba(34,197,94,0.05);border:2px solid rgba(34,197,94,0.2);border-radius:16px;padding:30px 40px;margin:20px 0;">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            <div style="text-align:left;">
+                <h3 style="color:#22c55e;font-family:'Inter',sans-serif;margin-bottom:5px;">Garantía de Satisfacción</h3>
+                <p style="color:var(--text-dim);margin:0;">Si el contenido no cumple tus expectativas, cuentas con el respaldo de la plataforma para tu tranquilidad.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bonos Section -->
+    <section class="bonos" style="padding: 80px 0; background: linear-gradient(to bottom, var(--bg), #0a1a1f, var(--bg));">
+        <div class="container" style="text-align: center;">
+            <h2 style="font-size: 2.5rem; margin-bottom: 20px;">🎁 Bonos Exclusivos</h2>
+            <p style="color: var(--text-dim); margin-bottom: 50px; font-size: 1.1rem;">Solo por tiempo limitado, llévate estos bonos adicionales <strong style="color: var(--secondary);">sin costo extra</strong></p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px;">
+                <div style="background: #111; border: 1px solid rgba(6,182,212,0.3); border-radius: 16px; padding: 35px 25px; transition: 0.3s; position: relative;" onmouseover="this.style.borderColor='var(--primary)';this.style.transform='translateY(-5px)'" onmouseout="this.style.borderColor='rgba(6,182,212,0.3)';this.style.transform='translateY(0)'">
+                    <div style="font-size: 3rem; margin-bottom: 15px;">📋</div>
+                    <h3 style="color: var(--primary); margin-bottom: 10px;">Checklist de Implementación</h3>
+                    <p style="color: var(--text-dim);">Una guía paso a paso imprimible para aplicar los 3 módulos sin perderte ningún detalle.</p>
+                    <div style="margin-top: 15px; background: rgba(6,182,212,0.1); color: var(--accent); padding: 5px 15px; border-radius: 20px; display: inline-block; font-size: 0.8rem;">VALOR $17 USD</div>
+                </div>
+
+                <div style="background: #111; border: 1px solid rgba(6,182,212,0.3); border-radius: 16px; padding: 35px 25px; transition: 0.3s; position: relative;" onmouseover="this.style.borderColor='var(--primary)';this.style.transform='translateY(-5px)'" onmouseout="this.style.borderColor='rgba(6,182,212,0.3)';this.style.transform='translateY(0)'">
+                    <div style="font-size: 3rem; margin-bottom: 15px;">📊</div>
+                    <h3 style="color: var(--primary); margin-bottom: 10px;">Plantilla de Auditoría Personal</h3>
+                    <p style="color: var(--text-dim);">Diagnostica tu estado actual en energía, enfoque y productividad con esta herramienta digital.</p>
+                    <div style="margin-top: 15px; background: rgba(6,182,212,0.1); color: var(--accent); padding: 5px 15px; border-radius: 20px; display: inline-block; font-size: 0.8rem;">VALOR $27 USD</div>
+                </div>
+
+                <div style="background: #111; border: 1px solid rgba(6,182,212,0.3); border-radius: 16px; padding: 35px 25px; transition: 0.3s; position: relative;" onmouseover="this.style.borderColor='var(--primary)';this.style.transform='translateY(-5px)'" onmouseout="this.style.borderColor='rgba(6,182,212,0.3)';this.style.transform='translateY(0)'">
+                    <div style="font-size: 3rem; margin-bottom: 15px;">🎧</div>
+                    <h3 style="color: var(--primary); margin-bottom: 10px;">Audio-guía de Meditación ALFA</h3>
+                    <p style="color: var(--text-dim);">Pista de 10 minutos con instrucción guiada para activar tu estado de alto rendimiento.</p>
+                    <div style="margin-top: 15px; background: rgba(6,182,212,0.1); color: var(--accent); padding: 5px 15px; border-radius: 20px; display: inline-block; font-size: 0.8rem;">VALOR $12 USD</div>
+                </div>
+            </div>
+
+            <div style="margin-top: 40px; padding: 20px; background: rgba(6,182,212,0.05); border: 1px dashed rgba(6,182,212,0.3); border-radius: 12px; display: inline-block;">
+                <p style="margin: 0; color: var(--accent);">💰 <strong>Valor total de los bonos: $56 USD — Todo incluido en tu compra por solo $8 USD</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <section class="oferta">
+        <div class="container">
+            <h2>Comienza tu transformación hoy</h2>
+            <p>Destilamos una consultoría de $500 USD en un manual práctico.</p>
+            
+            <div class="price-old">Precio regular: $97 USD</div>
+            <div class="price-tag">$8 USD</div>
+            
+            <p style="margin-bottom: 30px;">Acceso de por vida | Bonos Incluidos | PDF Interactivo</p>
+            
+            <a href="https://pay.hotmart.com/B106734066W?off=nmse0e76" class="cta-button">🚀 QUIERO MI SISTEMA ALFA AHORA</a>
+            
+            <div style="margin-top: 40px;">
+                <p style="font-size: 0.9rem; font-style: italic; color: var(--accent);">"Tu negocio crecerá cuando tú crezcas primero."</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="entrega" id="entrega">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 10px;">Entrega digital del PDF</h2>
+            <p style="text-align: center; color: var(--text-dim); max-width: 700px; margin: 0 auto;">Sube el archivo "Sistema Alfa" y genera un enlace inmediato para entregarlo al comprador después de la venta.</p>
+
+            <div class="entrega-card">
+                <form id="delivery-form">
+                    <label class="field">
+                        <span>Nombre del comprador</span>
+                        <input type="text" id="buyerName" placeholder="Ej: Ana Pérez" required>
+                    </label>
+                    <label class="field">
+                        <span>Email del comprador</span>
+                        <input type="email" id="buyerEmail" placeholder="correo@ejemplo.com" required>
+                    </label>
+                    <label class="field">
+                        <span>Archivo PDF</span>
+                        <input type="file" id="pdfFile" accept="application/pdf" required>
+                    </label>
+                    <button type="submit" class="cta-button">📤 Subir PDF y registrar entrega</button>
+                </form>
+                <div id="delivery-status" class="delivery-status">Esperando archivo...</div>
+                <div id="delivery-link" class="delivery-link"></div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p><strong>SISTEMA ALFA</strong> | El método definitivo para alcanzar el éxito empresarial.</p>
+            <br>
+            <p>© 2026 Roxana Rolón. Todos los derechos reservados.</p>
+            <p>Axis Tech AI • axistechai.com • @its.roxanarolon</p>
+            <div style="margin-top: 20px; font-size: 0.7rem; color: #333; max-width: 700px; margin-left: auto; margin-right: auto;">
+                Disclaimer: Este ebook tiene fines educativos e informativos. No constituye asesoramiento médico, nutricional ni profesional. Los resultados dependen del esfuerzo individual.
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://www.gstatic.com/firebasejs/12.16.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/12.16.0/firebase-storage-compat.js"></script>
+    <script src="./app.js"></script>
+</body>
+</html>
