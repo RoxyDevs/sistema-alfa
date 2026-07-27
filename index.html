@@ -171,9 +171,200 @@
         .fade-in { animation: fadeIn 1s ease-in forwards; opacity: 0; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
+        /* Payment Methods Grid - Modern Glassmorphism */
+        .payment-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .payment-card {
+            position: relative;
+            background: rgba(17, 17, 17, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: left;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .payment-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 20px;
+            padding: 1px;
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.3), rgba(34, 211, 238, 0.1), transparent);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            transition: opacity 0.4s;
+        }
+
+        .payment-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: transparent;
+            box-shadow: 0 20px 60px rgba(6, 182, 212, 0.15), 0 0 40px rgba(6, 182, 212, 0.05);
+        }
+
+        .payment-card:hover::before {
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.6), rgba(34, 211, 238, 0.3), rgba(165, 243, 252, 0.1));
+        }
+
+        .payment-card .card-icon {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            text-align: center;
+            transition: transform 0.4s;
+        }
+
+        .payment-card:hover .card-icon {
+            transform: scale(1.15) rotate(-5deg);
+        }
+
+        .payment-card h3 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .payment-card .card-desc {
+            color: var(--text-dim);
+            font-size: 0.85rem;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .payment-card .card-badges {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .payment-card .card-badges span {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 999px;
+            font-size: 0.82rem;
+            color: var(--text);
+            filter: grayscale(0.2);
+            transition: all 0.3s ease;
+        }
+
+        .payment-card:hover .card-badges span {
+            filter: grayscale(0);
+        }
+
+        .payment-card .card-footer {
+            margin-top: auto;
+            font-size: 0.75rem;
+            color: #555;
+            text-align: center;
+        }
+
+        .payment-card .cta-button {
+            padding: 12px 20px;
+            font-size: 0.8rem;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .payment-card .cta-button.small {
+            padding: 10px 16px;
+            font-size: 0.75rem;
+        }
+
+        .payment-card .reveal-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 18px;
+            padding: 18px;
+            margin-bottom: 20px;
+        }
+
+        .payment-card .reveal-box p {
+            color: var(--text-dim);
+            margin-bottom: 14px;
+            font-size: 0.95rem;
+            text-align: center;
+        }
+
+        .payment-card .reveal-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .payment-card .reveal-row input {
+            flex: 1;
+            min-width: 180px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--text);
+            padding: 12px 14px;
+            border-radius: 12px;
+            font-size: 0.95rem;
+        }
+
+        .payment-card .status-text {
+            margin-top: 10px;
+            font-size: 0.85rem;
+            color: var(--text-dim);
+        }
+
+        .payment-card .sensitive-data {
+            display: none;
+            animation: slideDown 0.5s ease-out forwards;
+        }
+
+        /* Sensitive data reveal animation */
+
+        @keyframes slideDown {
+            from { opacity: 0; max-height: 0; transform: translateY(-10px); }
+            to { opacity: 1; max-height: 800px; transform: translateY(0); }
+        }
+
+        /* Payment card colors per method */
+        .payment-card.hotmart { --card-accent: #06B6D4; }
+        .payment-card.hotmart h3 { color: #06B6D4; }
+        .payment-card.transfer { --card-accent: #eab308; }
+        .payment-card.transfer h3 { color: #eab308; }
+        .payment-card.paypal { --card-accent: #009cde; }
+        .payment-card.paypal h3 { color: #009cde; }
+        .payment-card.crypto { --card-accent: #818cf8; }
+        .payment-card.crypto h3 { color: #818cf8; }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .payment-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.5rem; }
             .price-tag { font-size: 3rem; }
+            .payment-grid { grid-template-columns: 1fr; }
+            .payment-card { padding: 25px 18px; }
         }
     </style>
 </head>
@@ -453,7 +644,6 @@
         </div>
     </section>
 
-    <!-- Sección de Métodos de Pago -->
     <section class="payment-methods" style="padding: 80px 0; background: var(--bg-soft);">
         <div class="container">
             <h2 style="text-align: center; margin-bottom: 10px;">💳 Elige tu método de pago</h2>
@@ -461,50 +651,44 @@
                 Una vez confirmado el pago, recibirás el acceso inmediato al PDF + bonos en tu email.
             </p>
 
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px;">
-                <!-- Hotmart -->
-                <div style="background: #111; border: 1px solid rgba(6,182,212,0.3); border-radius: 16px; padding: 35px 25px; text-align: center; transition: 0.3s;" onmouseover="this.style.borderColor='var(--primary)';this.style.transform='translateY(-5px)'" onmouseout="this.style.borderColor='rgba(6,182,212,0.3)';this.style.transform='translateY(0)'">
-                    <div style="font-size: 3rem; margin-bottom: 15px;">💳</div>
-                    <h3 style="color: var(--primary); margin-bottom: 10px;">Tarjeta / Pix / Boleto</h3>
-                    <p style="color: var(--text-dim); font-size: 0.9rem; margin-bottom: 20px;">Pago procesado por Hotmart — entrega automática e instantánea del PDF + bonos a tu email.</p>
-                    <a href="https://pay.hotmart.com/B106734066W?off=nmse0e76" class="cta-button" style="padding: 12px 24px; font-size: 0.85rem;">🚀 Pagar con Hotmart</a>
-                    <div style="margin-top: 12px; display: flex; justify-content: center; gap: 8px; flex-wrap: wrap;">
-                        <span style="font-size: 1.5rem;">💳</span>
-                        <span style="font-size: 1.5rem;">📱</span>
-                        <span style="font-size: 1.5rem;">🏦</span>
+            <div class="payment-grid">
+                <article class="payment-card hotmart">
+                    <div class="card-icon">💳</div>
+                    <h3>Tarjeta / Pix / Boleto</h3>
+                    <p class="card-desc">Pago procesado por Hotmart — entrega automática e instantánea del PDF + bonos a tu email.</p>
+                    <div class="card-badges">
+                        <span>Visa</span>
+                        <span>Mastercard</span>
+                        <span>Pix</span>
+                        <span>Boleto</span>
                     </div>
-                    <p style="color: #666; font-size: 0.75rem; margin-top: 8px;">Visa • Mastercard • AMEX • Pix • Boleto</p>
-                </div>
+                    <a href="https://pay.hotmart.com/B106734066W?off=nmse0e76" class="cta-button">🚀 Pagar con Hotmart</a>
+                    <p class="card-footer">Venta segura y envío inmediato.</p>
+                </article>
 
-                <!-- ARQ / Transferencias -->
-                <div style="background: #111; border: 1px solid rgba(234,179,8,0.3); border-radius: 16px; padding: 35px 25px; text-align: left; transition: 0.3s;" onmouseover="this.style.borderColor='#eab308';this.style.transform='translateY(-5px)'" onmouseout="this.style.borderColor='rgba(234,179,8,0.3)';this.style.transform='translateY(0)'">
-                    <div style="font-size: 3rem; margin-bottom: 15px; text-align: center;">💸</div>
-                    <h3 style="color: #eab308; margin-bottom: 15px; text-align: center;">ARQ / Transferencias</h3>
-                    <p style="color: var(--text-dim); font-size: 0.9rem; margin-bottom: 20px; text-align: center;">Pago desde Argentina por ARQ (ex Dolar App) o transferencia bancaria internacional.</p>
+                <article class="payment-card transfer">
+                    <div class="card-icon">💸</div>
+                    <h3>ARQ / Transferencias</h3>
+                    <p class="card-desc">Pago desde Argentina por ARQ o transferencia bancaria internacional.</p>
 
-                    <!-- Email capture + reveal -->
-                    <div id="transfer-reveal-box" style="background: #0f172a; border-radius: 10px; padding: 16px; margin-bottom: 12px; text-align: center;">
-                        <p style="color: var(--text-dim); font-size: 0.85rem; margin-bottom: 10px;">🔒 Ingresa tu email para ver los datos de pago</p>
-                        <div style="display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;">
-                            <input type="email" id="transfer-email" placeholder="tu@email.com" style="flex:1;min-width:180px;background:#111;border:1px solid #334155;color:var(--text);padding:10px 14px;border-radius:8px;font-size:0.85rem;">
-                            <button onclick="revealPaymentData('transfer')" class="cta-button" style="padding:10px 20px;font-size:0.8rem;white-space:nowrap;">🔓 Mostrar datos</button>
+                    <div class="reveal-box">
+                        <p>🔒 Ingresa tu email para ver los datos de pago</p>
+                        <div class="reveal-row">
+                            <input type="email" id="transfer-email" placeholder="tu@email.com">
+                            <button onclick="revealPaymentData('transfer')" class="cta-button small">🔓 Mostrar datos</button>
                         </div>
-                        <div id="transfer-email-status" style="margin-top:8px;font-size:0.8rem;color:var(--text-dim);"></div>
+                        <div id="transfer-email-status" class="status-text"></div>
                     </div>
 
-                    <!-- Hidden sensitive data -->
-                    <div id="transfer-sensitive-data" style="display:none;">
-                        <!-- ARQ -->
-                        <div style="background: #0f172a; border-radius: 10px; padding: 14px; margin-bottom: 12px;">
-                            <p style="color: var(--accent); font-size: 0.8rem; margin-bottom: 6px;">🇦🇷 Argentina — ARQ (ex Dolar App)</p>
-                            <p style="color: var(--text); font-size: 0.9rem;"><strong>Alias:</strong> <span style="color: var(--secondary);">axistech.arq</span></p>
-                            <p style="color: var(--text-dim); font-size: 0.8rem;">Usuarios ARQ: <strong style="color: var(--text);">$axistechai</strong></p>
+                    <div id="transfer-sensitive-data" class="sensitive-data">
+                        <div style="background: rgba(255,255,255,0.03); border-radius: 14px; padding: 16px; margin-bottom: 12px;">
+                            <p style="color: var(--accent); font-size: 0.85rem; margin-bottom: 6px;">🇦🇷 Argentina — ARQ (ex Dolar App)</p>
+                            <p style="color: var(--text); font-size: 0.95rem;"><strong>Alias:</strong> <span style="color: var(--secondary);">axistech.arq</span></p>
+                            <p style="color: var(--text-dim); font-size: 0.85rem;"><strong>Usuarios ARQ:</strong> <span style="color: var(--text);">$axistechai</span></p>
                         </div>
-
-                        <!-- USD -->
-                        <div style="background: #0f172a; border-radius: 10px; padding: 14px; margin-bottom: 12px;">
-                            <p style="color: var(--accent); font-size: 0.8rem; margin-bottom: 6px;">🇺🇸 Cuenta en USD</p>
-                            <p style="color: var(--text-dim); font-size: 0.8rem; line-height: 1.7;">
+                        <div style="background: rgba(255,255,255,0.03); border-radius: 14px; padding: 16px; margin-bottom: 12px;">
+                            <p style="color: var(--accent); font-size: 0.85rem; margin-bottom: 6px;">🇺🇸 Cuenta en USD</p>
+                            <p style="color: var(--text-dim); font-size: 0.85rem; line-height: 1.7;">
                                 <strong style="color: var(--text);">Beneficiary:</strong> Roxana Rolon<br>
                                 <strong style="color: var(--text);">Bank:</strong> Lead Bank<br>
                                 <strong style="color: var(--text);">Routing:</strong> 101019644<br>
@@ -513,11 +697,9 @@
                                 <span style="color: #f97316;">Fee: $3 USD</span>
                             </p>
                         </div>
-
-                        <!-- EUR -->
-                        <div style="background: #0f172a; border-radius: 10px; padding: 14px; margin-bottom: 12px;">
-                            <p style="color: var(--accent); font-size: 0.8rem; margin-bottom: 6px;">🇪🇺 Cuenta en EUROS</p>
-                            <p style="color: var(--text-dim); font-size: 0.8rem; line-height: 1.7;">
+                        <div style="background: rgba(255,255,255,0.03); border-radius: 14px; padding: 16px; margin-bottom: 12px;">
+                            <p style="color: var(--accent); font-size: 0.85rem; margin-bottom: 6px;">🇪🇺 Cuenta en EUROS</p>
+                            <p style="color: var(--text-dim); font-size: 0.85rem; line-height: 1.7;">
                                 <strong style="color: var(--text);">Beneficiary:</strong> Bridge Building S.A.<br>
                                 <strong style="color: var(--text);">Country:</strong> Luxembourg<br>
                                 <strong style="color: var(--text);">IBAN:</strong> LU47 4080 0000 4773 8123<br>
@@ -525,115 +707,99 @@
                                 <span style="color: #f97316;">Fee: 3 EUR</span>
                             </p>
                         </div>
-
-                        <p style="color: var(--text-dim); font-size: 0.85rem; text-align: center;">💰 <strong>Precio: $8 USD</strong></p>
-                        
-                        <!-- Confirm payment button -->
-                        <div id="transfer-confirm-box" style="text-align:center;margin-top:12px;">
-                            <button onclick="confirmPayment('transfer', this)" class="cta-button" style="padding:10px 20px;font-size:0.8rem;background:linear-gradient(135deg,#22c55e,#16a34a);">✅ Ya pagué — Confirmar mi compra</button>
-                            <div id="transfer-confirm-status" style="margin-top:8px;font-size:0.8rem;color:var(--text-dim);"></div>
+                        <p class="status-text" style="text-align:center;">💰 <strong>Precio: $8 USD</strong></p>
+                        <div id="transfer-confirm-box" style="text-align:center; margin-top: 12px;">
+                            <button onclick="confirmPayment('transfer', this)" class="cta-button small" style="background: linear-gradient(135deg,#22c55e,#16a34a);">✅ Ya pagué — Confirmar mi compra</button>
+                            <div id="transfer-confirm-status" class="status-text"></div>
                         </div>
                     </div>
-                </div>
+                </article>
 
-                <!-- PayPal -->
-                <div style="background: #111; border: 1px solid rgba(0,156,222,0.3); border-radius: 16px; padding: 35px 25px; text-align: center; transition: 0.3s;" onmouseover="this.style.borderColor='#009cde';this.style.transform='translateY(-5px)'" onmouseout="this.style.borderColor='rgba(0,156,222,0.3)';this.style.transform='translateY(0)'">
-                    <div style="font-size: 3rem; margin-bottom: 15px;">💙</div>
-                    <h3 style="color: #009cde; margin-bottom: 10px;">PayPal</h3>
-                    <p style="color: var(--text-dim); font-size: 0.9rem; margin-bottom: 20px;">Envía el pago vía PayPal y te enviaremos el enlace de descarga a tu email en minutos.</p>
-                    
-                    <!-- Email capture + reveal -->
-                    <div id="paypal-reveal-box" style="background: #0f172a; border-radius: 10px; padding: 16px; margin-bottom: 12px;">
-                        <p style="color: var(--text-dim); font-size: 0.85rem; margin-bottom: 10px;">🔒 Ingresa tu email para ver los datos de pago</p>
-                        <div style="display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;">
-                            <input type="email" id="paypal-email" placeholder="tu@email.com" style="flex:1;min-width:180px;background:#111;border:1px solid #334155;color:var(--text);padding:10px 14px;border-radius:8px;font-size:0.85rem;">
-                            <button onclick="revealPaymentData('paypal')" class="cta-button" style="padding:10px 20px;font-size:0.8rem;white-space:nowrap;">🔓 Mostrar datos</button>
+                <article class="payment-card paypal">
+                    <div class="card-icon">💙</div>
+                    <h3>PayPal</h3>
+                    <p class="card-desc">Envía el pago vía PayPal y te enviaremos el enlace de descarga a tu email.</p>
+
+                    <div class="reveal-box">
+                        <p>🔒 Ingresa tu email para ver los datos de pago</p>
+                        <div class="reveal-row">
+                            <input type="email" id="paypal-email" placeholder="tu@email.com">
+                            <button onclick="revealPaymentData('paypal')" class="cta-button small">🔓 Mostrar datos</button>
                         </div>
-                        <div id="paypal-email-status" style="margin-top:8px;font-size:0.8rem;color:var(--text-dim);"></div>
+                        <div id="paypal-email-status" class="status-text"></div>
                     </div>
 
-                    <!-- Hidden sensitive data -->
-                    <div id="paypal-sensitive-data" style="display:none;">
-                        <div style="background: #0f172a; border-radius: 10px; padding: 12px; margin-bottom: 15px;">
-                            <p style="color: var(--accent); font-size: 0.8rem; margin-bottom: 4px;">Cuenta PayPal:</p>
+                    <div id="paypal-sensitive-data" class="sensitive-data">
+                        <div style="background: rgba(255,255,255,0.03); border-radius: 14px; padding: 16px; margin-bottom: 15px;">
+                            <p style="color: var(--accent); font-size: 0.85rem; margin-bottom: 4px;">Cuenta PayPal</p>
                             <p style="color: var(--text); font-weight: 600; font-size: 1rem;">@roxdevit</p>
                         </div>
-                        <p style="color: var(--text-dim); font-size: 0.85rem;">💰 <strong>Precio: $8 USD</strong></p>
-                        
-                        <!-- Confirm payment button -->
-                        <div id="paypal-confirm-box" style="margin-top:12px;">
-                            <button onclick="confirmPayment('paypal', this)" class="cta-button" style="padding:10px 20px;font-size:0.8rem;background:linear-gradient(135deg,#22c55e,#16a34a);">✅ Ya pagué — Confirmar mi compra</button>
-                            <div id="paypal-confirm-status" style="margin-top:8px;font-size:0.8rem;color:var(--text-dim);"></div>
+                        <p class="status-text">💰 <strong>Precio: $8 USD</strong></p>
+                        <div id="paypal-confirm-box" style="text-align:center; margin-top: 12px;">
+                            <button onclick="confirmPayment('paypal', this)" class="cta-button small" style="background: linear-gradient(135deg,#22c55e,#16a34a);">✅ Ya pagué — Confirmar mi compra</button>
+                            <div id="paypal-confirm-status" class="status-text"></div>
                         </div>
                     </div>
-                </div>
+                </article>
 
-                <!-- Cripto -->
-                <div style="background: #111; border: 1px solid rgba(99,102,241,0.3); border-radius: 16px; padding: 35px 25px; text-align: left; transition: 0.3s;" onmouseover="this.style.borderColor='#6366f1';this.style.transform='translateY(-5px)'" onmouseout="this.style.borderColor='rgba(99,102,241,0.3)';this.style.transform='translateY(0)'">
-                    <div style="font-size: 3rem; margin-bottom: 15px; text-align: center;">₿</div>
-                    <h3 style="color: #818cf8; margin-bottom: 15px; text-align: center;">Criptomonedas</h3>
-                    <p style="color: var(--text-dim); font-size: 0.9rem; margin-bottom: 20px; text-align: center;">Paga con USDT o USDc desde cualquier billetera.</p>
+                <article class="payment-card crypto">
+                    <div class="card-icon">₿</div>
+                    <h3>Criptomonedas</h3>
+                    <p class="card-desc">Paga con USDT o USDc desde cualquier billetera.</p>
 
-                    <!-- Email capture + reveal -->
-                    <div id="crypto-reveal-box" style="background: #0f172a; border-radius: 10px; padding: 16px; margin-bottom: 12px; text-align: center;">
-                        <p style="color: var(--text-dim); font-size: 0.85rem; margin-bottom: 10px;">🔒 Ingresa tu email para ver las direcciones de pago</p>
-                        <div style="display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;">
-                            <input type="email" id="crypto-email" placeholder="tu@email.com" style="flex:1;min-width:180px;background:#111;border:1px solid #334155;color:var(--text);padding:10px 14px;border-radius:8px;font-size:0.85rem;">
-                            <button onclick="revealPaymentData('crypto')" class="cta-button" style="padding:10px 20px;font-size:0.8rem;white-space:nowrap;">🔓 Mostrar direcciones</button>
+                    <div class="reveal-box">
+                        <p>🔒 Ingresa tu email para ver las direcciones de pago</p>
+                        <div class="reveal-row">
+                            <input type="email" id="crypto-email" placeholder="tu@email.com">
+                            <button onclick="revealPaymentData('crypto')" class="cta-button small">🔓 Mostrar direcciones</button>
                         </div>
-                        <div id="crypto-email-status" style="margin-top:8px;font-size:0.8rem;color:var(--text-dim);"></div>
+                        <div id="crypto-email-status" class="status-text"></div>
                     </div>
 
-                    <!-- Hidden sensitive data -->
-                    <div id="crypto-sensitive-data" style="display:none;">
-                        <!-- TABS: USDT / USDc -->
+                    <div id="crypto-sensitive-data" class="sensitive-data">
                         <div style="display: flex; gap: 8px; margin-bottom: 15px;" id="cryptoTabs">
-                            <button onclick="switchCrypto('usdt')" id="tab-usdt" style="flex:1;padding:8px;border-radius:8px;border:1px solid #6366f1;background:#6366f1;color:#fff;font-weight:700;cursor:pointer;font-size:0.8rem;">USDT</button>
-                            <button onclick="switchCrypto('usdc')" id="tab-usdc" style="flex:1;padding:8px;border-radius:8px;border:1px solid #334155;background:transparent;color:var(--text-dim);font-weight:600;cursor:pointer;font-size:0.8rem;">USDc</button>
+                            <button onclick="switchCrypto('usdt')" id="tab-usdt" style="flex:1;padding:10px;border-radius:12px;border:1px solid #6366f1;background:#6366f1;color:#fff;font-weight:700;cursor:pointer;font-size:0.85rem;">USDT</button>
+                            <button onclick="switchCrypto('usdc')" id="tab-usdc" style="flex:1;padding:10px;border-radius:12px;border:1px solid rgba(255,255,255,0.12);background:transparent;color:var(--text-dim);font-weight:600;cursor:pointer;font-size:0.85rem;">USDc</button>
                         </div>
 
-                        <!-- USDT -->
                         <div id="crypto-usdt">
-                            <div style="background: #0f172a; border-radius: 10px; padding: 14px; margin-bottom: 10px;">
-                                <p style="color: var(--accent); font-size: 0.8rem; margin-bottom: 4px;">🔷 Tron (TRC20)</p>
-                                <p style="color: var(--text-dim); font-size: 0.7rem;">Fee: <span style="color: #f97316;">$3</span></p>
-                                <p style="color: var(--text); font-size: 0.7rem; word-break: break-all; font-family: monospace; margin-top: 4px;">TApMKnFJP54z769GLGrgY17X1UN97crC8W</p>
+                            <div style="background: rgba(255,255,255,0.03); border-radius: 14px; padding: 14px; margin-bottom: 10px;">
+                                <p style="color: var(--accent); font-size: 0.85rem; margin-bottom: 4px;">🔷 Tron (TRC20)</p>
+                                <p style="color: var(--text-dim); font-size: 0.8rem;">Fee: <span style="color: #f97316;">$3</span></p>
+                                <p style="color: var(--text); font-size: 0.8rem; word-break: break-all; font-family: monospace; margin-top: 4px;">TApMKnFJP54z769GLGrgY17X1UN97crC8W</p>
                             </div>
-                            <div style="background: #0f172a; border-radius: 10px; padding: 14px; margin-bottom: 10px;">
-                                <p style="color: var(--accent); font-size: 0.8rem; margin-bottom: 4px;">💠 Ethereum (ERC20)</p>
-                                <p style="color: var(--text-dim); font-size: 0.7rem;">Fee: <span style="color: #f97316;">3 USDc</span></p>
-                                <p style="color: var(--text); font-size: 0.7rem; word-break: break-all; font-family: monospace; margin-top: 4px;">0x579644ea575f13c3322be3cc266d11477e824739</p>
+                            <div style="background: rgba(255,255,255,0.03); border-radius: 14px; padding: 14px; margin-bottom: 10px;">
+                                <p style="color: var(--accent); font-size: 0.85rem; margin-bottom: 4px;">💠 Ethereum (ERC20)</p>
+                                <p style="color: var(--text-dim); font-size: 0.8rem;">Fee: <span style="color: #f97316;">3 USDc</span></p>
+                                <p style="color: var(--text); font-size: 0.8rem; word-break: break-all; font-family: monospace; margin-top: 4px;">0x579644ea575f13c3322be3cc266d11477e824739</p>
                             </div>
-                            <div style="background: #0f172a; border-radius: 10px; padding: 14px; margin-bottom: 10px;">
-                                <p style="color: var(--accent); font-size: 0.8rem; margin-bottom: 4px;">⬡ Polygon (MATIC)</p>
-                                <p style="color: var(--text-dim); font-size: 0.7rem;">Fee: <span style="color: #22c55e;">Gratis</span></p>
-                                <p style="color: var(--text); font-size: 0.7rem; word-break: break-all; font-family: monospace; margin-top: 4px;">0x579644ea575f13c3322be3cc266d11477e824739</p>
+                            <div style="background: rgba(255,255,255,0.03); border-radius: 14px; padding: 14px; margin-bottom: 10px;">
+                                <p style="color: var(--accent); font-size: 0.85rem; margin-bottom: 4px;">⬡ Polygon (MATIC)</p>
+                                <p style="color: var(--text-dim); font-size: 0.8rem;">Fee: <span style="color: #22c55e;">Gratis</span></p>
+                                <p style="color: var(--text); font-size: 0.8rem; word-break: break-all; font-family: monospace; margin-top: 4px;">0x579644ea575f13c3322be3cc266d11477e824739</p>
                             </div>
                         </div>
 
-                        <!-- USDc -->
                         <div id="crypto-usdc" style="display: none;">
-                            <div style="background: #0f172a; border-radius: 10px; padding: 14px; margin-bottom: 10px;">
-                                <p style="color: var(--accent); font-size: 0.8rem; margin-bottom: 4px;">💠 Ethereum (ERC20)</p>
-                                <p style="color: var(--text-dim); font-size: 0.7rem;">Fee: <span style="color: #f97316;">3 USDc</span></p>
-                                <p style="color: var(--text); font-size: 0.7rem; word-break: break-all; font-family: monospace; margin-top: 4px;">0x579644ea575f13c3322be3cc266d11477e824739</p>
+                            <div style="background: rgba(255,255,255,0.03); border-radius: 14px; padding: 14px; margin-bottom: 10px;">
+                                <p style="color: var(--accent); font-size: 0.85rem; margin-bottom: 4px;">💠 Ethereum (ERC20)</p>
+                                <p style="color: var(--text-dim); font-size: 0.8rem;">Fee: <span style="color: #f97316;">3 USDc</span></p>
+                                <p style="color: var(--text); font-size: 0.8rem; word-break: break-all; font-family: monospace; margin-top: 4px;">0x579644ea575f13c3322be3cc266d11477e824739</p>
                             </div>
-                            <div style="background: #0f172a; border-radius: 10px; padding: 14px; margin-bottom: 10px;">
-                                <p style="color: var(--accent); font-size: 0.8rem; margin-bottom: 4px;">⬡ Polygon (MATIC)</p>
-                                <p style="color: var(--text-dim); font-size: 0.7rem;">Fee: <span style="color: #22c55e;">Gratis</span></p>
-                                <p style="color: var(--text); font-size: 0.7rem; word-break: break-all; font-family: monospace; margin-top: 4px;">0x579644ea575f13c3322be3cc266d11477e824739</p>
+                            <div style="background: rgba(255,255,255,0.03); border-radius: 14px; padding: 14px; margin-bottom: 10px;">
+                                <p style="color: var(--accent); font-size: 0.85rem; margin-bottom: 4px;">⬡ Polygon (MATIC)</p>
+                                <p style="color: var(--text-dim); font-size: 0.8rem;">Fee: <span style="color: #22c55e;">Gratis</span></p>
+                                <p style="color: var(--text); font-size: 0.8rem; word-break: break-all; font-family: monospace; margin-top: 4px;">0x579644ea575f13c3322be3cc266d11477e824739</p>
                             </div>
                         </div>
 
-                        <p style="color: var(--text-dim); font-size: 0.85rem; text-align: center;">💰 <strong>Precio: $8 USD</strong></p>
-                        
-                        <!-- Confirm payment button -->
-                        <div id="crypto-confirm-box" style="text-align:center;margin-top:12px;">
-                            <button onclick="confirmPayment('crypto', this)" class="cta-button" style="padding:10px 20px;font-size:0.8rem;background:linear-gradient(135deg,#22c55e,#16a34a);">✅ Ya pagué — Confirmar mi compra</button>
-                            <div id="crypto-confirm-status" style="margin-top:8px;font-size:0.8rem;color:var(--text-dim);"></div>
+                        <p class="status-text" style="text-align:center;">💰 <strong>Precio: $8 USD</strong></p>
+                        <div id="crypto-confirm-box" style="text-align:center; margin-top: 12px;">
+                            <button onclick="confirmPayment('crypto', this)" class="cta-button small" style="background: linear-gradient(135deg,#22c55e,#16a34a);">✅ Ya pagué — Confirmar mi compra</button>
+                            <div id="crypto-confirm-status" class="status-text"></div>
                         </div>
                     </div>
-                </div>
+                </article>
             </div>
 
             <div style="text-align: center; margin-top: 40px; padding: 20px; background: rgba(6,182,212,0.05); border-radius: 12px; border: 1px dashed rgba(6,182,212,0.2);">
