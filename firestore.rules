@@ -1,14 +1,64 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /sales/{saleId} {
-      allow read: if true; // permitir lectura pública para verificar entrega
-      allow create: if request.resource.data.keys().hasAll(['buyerName', 'buyerEmail', 'downloadUrl'])
-                    && request.resource.data.buyerName is string
-                    && request.resource.data.buyerEmail is string
-                    && request.resource.data.downloadUrl is string
+
+    // Colección de ventas manuales (PayPal / Transferencia / Crypto)
+    match /manual_sales/{saleId} {
+      allow read: if true;
+      
+      allow create: if request.resource.data.keys().hasAll(['email', 'method', 'token', 'downloadUrl', 'status', 'createdAt'])
+                    && request.resource.data.email is string
+                    && request.resource.data.email.matches('^[^@]+@[^@]+\\.[^@]+$')
+                    && request.resource.data.token is string
+                    && request.resource.data.token.size() >= 20
+                    && request.resource.data.status in ['active', 'used']
                     && request.resource.data.downloadUrl.matches('https://firebasestorage\\.googleapis\\.com/.*');
-      allow update, delete: if false;
+      
+      allow update: if request.resource.data.keys().hasOnly(['status', 'usedAt'])
+                    && request.resource.data.status == 'used';
+      
+      allow delete: if false;
     }
+
+    // Colección anterior (solo lectura, ya no se escribe)
+    match /sales/{saleId} {
+      allow read: if true;
+      allow create, update, delete: if false;
+    }
+
+    // Colección de leads capturados (cuando ingresan email para ver datos de pago)
+    match /leads/{leadId} {
+      allow create: if request.resource.data.keys().hasAll(['email', 'method', 'createdAt'])
+                    && request.resource.data.email is string
+                    && request.resource.data.email.matches('^[^@]+@[^@]+\\.[^@]+$')
+                    && request.resource.data.method is string;
+      
+      allow read: if true; // lectura pública para admin
+      allow update: if request.resource.data.keys().hasAny(['notified', 'reminded']);
+      allow delete: if false;
+    }
+
+    // Colección de pagos pendientes de verificación (cuando confirman "Ya pagué")
+    match /pending_sales/{pendingId} {
+      allow create: if request.resource.data.keys().hasAll(['email', 'method', 'status', 'createdAt'])
+                    && request.resource.data.email is string
+                    && request.resource.data.email.matches('^[^@]+@[^@]+\\.[^@]+$')
+                    && request.resource.data.status == 'pending_verification';
+      
+      allow read: if true;
+      allow update: if request.resource.data.status in ['approved', 'rejected', 'pending_verification'];
+      allow delete: if false;
+    }
+
+    // Colección de recordatorios programados (para EmailJS 24h)
+    match /reminders/{reminderId} {
+      allow create: if request.resource.data.keys().hasAll(['email', 'type', 'scheduledAt'])
+                    && request.resource.data.email is string;
+      allow read: if true;
+      allow update: if request.resource.data.keys().hasAny(['sent', 'sentAt']);
+      allow delete: if false;
+    }
+
   }
 }
+

@@ -453,29 +453,206 @@
         </div>
     </section>
 
-    <section class="entrega" id="entrega">
+    <!-- Sección de Métodos de Pago -->
+    <section class="payment-methods" style="padding: 80px 0; background: var(--bg-soft);">
         <div class="container">
-            <h2 style="text-align: center; margin-bottom: 10px;">Entrega digital del PDF</h2>
-            <p style="text-align: center; color: var(--text-dim); max-width: 700px; margin: 0 auto;">Sube el archivo "Sistema Alfa" y genera un enlace inmediato para entregarlo al comprador después de la venta.</p>
+            <h2 style="text-align: center; margin-bottom: 10px;">💳 Elige tu método de pago</h2>
+            <p style="text-align: center; color: var(--text-dim); max-width: 700px; margin: 0 auto 40px;">
+                Una vez confirmado el pago, recibirás el acceso inmediato al PDF + bonos en tu email.
+            </p>
 
-            <div class="entrega-card">
-                <form id="delivery-form">
-                    <label class="field">
-                        <span>Nombre del comprador</span>
-                        <input type="text" id="buyerName" placeholder="Ej: Ana Pérez" required>
-                    </label>
-                    <label class="field">
-                        <span>Email del comprador</span>
-                        <input type="email" id="buyerEmail" placeholder="correo@ejemplo.com" required>
-                    </label>
-                    <label class="field">
-                        <span>Archivo PDF</span>
-                        <input type="file" id="pdfFile" accept="application/pdf" required>
-                    </label>
-                    <button type="submit" class="cta-button">📤 Subir PDF y registrar entrega</button>
-                </form>
-                <div id="delivery-status" class="delivery-status">Esperando archivo...</div>
-                <div id="delivery-link" class="delivery-link"></div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px;">
+                <!-- Hotmart -->
+                <div style="background: #111; border: 1px solid rgba(6,182,212,0.3); border-radius: 16px; padding: 35px 25px; text-align: center; transition: 0.3s;" onmouseover="this.style.borderColor='var(--primary)';this.style.transform='translateY(-5px)'" onmouseout="this.style.borderColor='rgba(6,182,212,0.3)';this.style.transform='translateY(0)'">
+                    <div style="font-size: 3rem; margin-bottom: 15px;">💳</div>
+                    <h3 style="color: var(--primary); margin-bottom: 10px;">Tarjeta / Pix / Boleto</h3>
+                    <p style="color: var(--text-dim); font-size: 0.9rem; margin-bottom: 20px;">Pago procesado por Hotmart — entrega automática e instantánea del PDF + bonos a tu email.</p>
+                    <a href="https://pay.hotmart.com/B106734066W?off=nmse0e76" class="cta-button" style="padding: 12px 24px; font-size: 0.85rem;">🚀 Pagar con Hotmart</a>
+                    <div style="margin-top: 12px; display: flex; justify-content: center; gap: 8px; flex-wrap: wrap;">
+                        <span style="font-size: 1.5rem;">💳</span>
+                        <span style="font-size: 1.5rem;">📱</span>
+                        <span style="font-size: 1.5rem;">🏦</span>
+                    </div>
+                    <p style="color: #666; font-size: 0.75rem; margin-top: 8px;">Visa • Mastercard • AMEX • Pix • Boleto</p>
+                </div>
+
+                <!-- ARQ / Transferencias -->
+                <div style="background: #111; border: 1px solid rgba(234,179,8,0.3); border-radius: 16px; padding: 35px 25px; text-align: left; transition: 0.3s;" onmouseover="this.style.borderColor='#eab308';this.style.transform='translateY(-5px)'" onmouseout="this.style.borderColor='rgba(234,179,8,0.3)';this.style.transform='translateY(0)'">
+                    <div style="font-size: 3rem; margin-bottom: 15px; text-align: center;">💸</div>
+                    <h3 style="color: #eab308; margin-bottom: 15px; text-align: center;">ARQ / Transferencias</h3>
+                    <p style="color: var(--text-dim); font-size: 0.9rem; margin-bottom: 20px; text-align: center;">Pago desde Argentina por ARQ (ex Dolar App) o transferencia bancaria internacional.</p>
+
+                    <!-- Email capture + reveal -->
+                    <div id="transfer-reveal-box" style="background: #0f172a; border-radius: 10px; padding: 16px; margin-bottom: 12px; text-align: center;">
+                        <p style="color: var(--text-dim); font-size: 0.85rem; margin-bottom: 10px;">🔒 Ingresa tu email para ver los datos de pago</p>
+                        <div style="display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;">
+                            <input type="email" id="transfer-email" placeholder="tu@email.com" style="flex:1;min-width:180px;background:#111;border:1px solid #334155;color:var(--text);padding:10px 14px;border-radius:8px;font-size:0.85rem;">
+                            <button onclick="revealPaymentData('transfer')" class="cta-button" style="padding:10px 20px;font-size:0.8rem;white-space:nowrap;">🔓 Mostrar datos</button>
+                        </div>
+                        <div id="transfer-email-status" style="margin-top:8px;font-size:0.8rem;color:var(--text-dim);"></div>
+                    </div>
+
+                    <!-- Hidden sensitive data -->
+                    <div id="transfer-sensitive-data" style="display:none;">
+                        <!-- ARQ -->
+                        <div style="background: #0f172a; border-radius: 10px; padding: 14px; margin-bottom: 12px;">
+                            <p style="color: var(--accent); font-size: 0.8rem; margin-bottom: 6px;">🇦🇷 Argentina — ARQ (ex Dolar App)</p>
+                            <p style="color: var(--text); font-size: 0.9rem;"><strong>Alias:</strong> <span style="color: var(--secondary);">axistech.arq</span></p>
+                            <p style="color: var(--text-dim); font-size: 0.8rem;">Usuarios ARQ: <strong style="color: var(--text);">$axistechai</strong></p>
+                        </div>
+
+                        <!-- USD -->
+                        <div style="background: #0f172a; border-radius: 10px; padding: 14px; margin-bottom: 12px;">
+                            <p style="color: var(--accent); font-size: 0.8rem; margin-bottom: 6px;">🇺🇸 Cuenta en USD</p>
+                            <p style="color: var(--text-dim); font-size: 0.8rem; line-height: 1.7;">
+                                <strong style="color: var(--text);">Beneficiary:</strong> Roxana Rolon<br>
+                                <strong style="color: var(--text);">Bank:</strong> Lead Bank<br>
+                                <strong style="color: var(--text);">Routing:</strong> 101019644<br>
+                                <strong style="color: var(--text);">Account:</strong> 210241271578<br>
+                                <strong style="color: var(--text);">Type:</strong> Checking<br>
+                                <span style="color: #f97316;">Fee: $3 USD</span>
+                            </p>
+                        </div>
+
+                        <!-- EUR -->
+                        <div style="background: #0f172a; border-radius: 10px; padding: 14px; margin-bottom: 12px;">
+                            <p style="color: var(--accent); font-size: 0.8rem; margin-bottom: 6px;">🇪🇺 Cuenta en EUROS</p>
+                            <p style="color: var(--text-dim); font-size: 0.8rem; line-height: 1.7;">
+                                <strong style="color: var(--text);">Beneficiary:</strong> Bridge Building S.A.<br>
+                                <strong style="color: var(--text);">Country:</strong> Luxembourg<br>
+                                <strong style="color: var(--text);">IBAN:</strong> LU47 4080 0000 4773 8123<br>
+                                <strong style="color: var(--text);">Type:</strong> Business<br>
+                                <span style="color: #f97316;">Fee: 3 EUR</span>
+                            </p>
+                        </div>
+
+                        <p style="color: var(--text-dim); font-size: 0.85rem; text-align: center;">💰 <strong>Precio: $8 USD</strong></p>
+                        
+                        <!-- Confirm payment button -->
+                        <div id="transfer-confirm-box" style="text-align:center;margin-top:12px;">
+                            <button onclick="confirmPayment('transfer', this)" class="cta-button" style="padding:10px 20px;font-size:0.8rem;background:linear-gradient(135deg,#22c55e,#16a34a);">✅ Ya pagué — Confirmar mi compra</button>
+                            <div id="transfer-confirm-status" style="margin-top:8px;font-size:0.8rem;color:var(--text-dim);"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PayPal -->
+                <div style="background: #111; border: 1px solid rgba(0,156,222,0.3); border-radius: 16px; padding: 35px 25px; text-align: center; transition: 0.3s;" onmouseover="this.style.borderColor='#009cde';this.style.transform='translateY(-5px)'" onmouseout="this.style.borderColor='rgba(0,156,222,0.3)';this.style.transform='translateY(0)'">
+                    <div style="font-size: 3rem; margin-bottom: 15px;">💙</div>
+                    <h3 style="color: #009cde; margin-bottom: 10px;">PayPal</h3>
+                    <p style="color: var(--text-dim); font-size: 0.9rem; margin-bottom: 20px;">Envía el pago vía PayPal y te enviaremos el enlace de descarga a tu email en minutos.</p>
+                    
+                    <!-- Email capture + reveal -->
+                    <div id="paypal-reveal-box" style="background: #0f172a; border-radius: 10px; padding: 16px; margin-bottom: 12px;">
+                        <p style="color: var(--text-dim); font-size: 0.85rem; margin-bottom: 10px;">🔒 Ingresa tu email para ver los datos de pago</p>
+                        <div style="display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;">
+                            <input type="email" id="paypal-email" placeholder="tu@email.com" style="flex:1;min-width:180px;background:#111;border:1px solid #334155;color:var(--text);padding:10px 14px;border-radius:8px;font-size:0.85rem;">
+                            <button onclick="revealPaymentData('paypal')" class="cta-button" style="padding:10px 20px;font-size:0.8rem;white-space:nowrap;">🔓 Mostrar datos</button>
+                        </div>
+                        <div id="paypal-email-status" style="margin-top:8px;font-size:0.8rem;color:var(--text-dim);"></div>
+                    </div>
+
+                    <!-- Hidden sensitive data -->
+                    <div id="paypal-sensitive-data" style="display:none;">
+                        <div style="background: #0f172a; border-radius: 10px; padding: 12px; margin-bottom: 15px;">
+                            <p style="color: var(--accent); font-size: 0.8rem; margin-bottom: 4px;">Cuenta PayPal:</p>
+                            <p style="color: var(--text); font-weight: 600; font-size: 1rem;">@roxdevit</p>
+                        </div>
+                        <p style="color: var(--text-dim); font-size: 0.85rem;">💰 <strong>Precio: $8 USD</strong></p>
+                        
+                        <!-- Confirm payment button -->
+                        <div id="paypal-confirm-box" style="margin-top:12px;">
+                            <button onclick="confirmPayment('paypal', this)" class="cta-button" style="padding:10px 20px;font-size:0.8rem;background:linear-gradient(135deg,#22c55e,#16a34a);">✅ Ya pagué — Confirmar mi compra</button>
+                            <div id="paypal-confirm-status" style="margin-top:8px;font-size:0.8rem;color:var(--text-dim);"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cripto -->
+                <div style="background: #111; border: 1px solid rgba(99,102,241,0.3); border-radius: 16px; padding: 35px 25px; text-align: left; transition: 0.3s;" onmouseover="this.style.borderColor='#6366f1';this.style.transform='translateY(-5px)'" onmouseout="this.style.borderColor='rgba(99,102,241,0.3)';this.style.transform='translateY(0)'">
+                    <div style="font-size: 3rem; margin-bottom: 15px; text-align: center;">₿</div>
+                    <h3 style="color: #818cf8; margin-bottom: 15px; text-align: center;">Criptomonedas</h3>
+                    <p style="color: var(--text-dim); font-size: 0.9rem; margin-bottom: 20px; text-align: center;">Paga con USDT o USDc desde cualquier billetera.</p>
+
+                    <!-- Email capture + reveal -->
+                    <div id="crypto-reveal-box" style="background: #0f172a; border-radius: 10px; padding: 16px; margin-bottom: 12px; text-align: center;">
+                        <p style="color: var(--text-dim); font-size: 0.85rem; margin-bottom: 10px;">🔒 Ingresa tu email para ver las direcciones de pago</p>
+                        <div style="display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;">
+                            <input type="email" id="crypto-email" placeholder="tu@email.com" style="flex:1;min-width:180px;background:#111;border:1px solid #334155;color:var(--text);padding:10px 14px;border-radius:8px;font-size:0.85rem;">
+                            <button onclick="revealPaymentData('crypto')" class="cta-button" style="padding:10px 20px;font-size:0.8rem;white-space:nowrap;">🔓 Mostrar direcciones</button>
+                        </div>
+                        <div id="crypto-email-status" style="margin-top:8px;font-size:0.8rem;color:var(--text-dim);"></div>
+                    </div>
+
+                    <!-- Hidden sensitive data -->
+                    <div id="crypto-sensitive-data" style="display:none;">
+                        <!-- TABS: USDT / USDc -->
+                        <div style="display: flex; gap: 8px; margin-bottom: 15px;" id="cryptoTabs">
+                            <button onclick="switchCrypto('usdt')" id="tab-usdt" style="flex:1;padding:8px;border-radius:8px;border:1px solid #6366f1;background:#6366f1;color:#fff;font-weight:700;cursor:pointer;font-size:0.8rem;">USDT</button>
+                            <button onclick="switchCrypto('usdc')" id="tab-usdc" style="flex:1;padding:8px;border-radius:8px;border:1px solid #334155;background:transparent;color:var(--text-dim);font-weight:600;cursor:pointer;font-size:0.8rem;">USDc</button>
+                        </div>
+
+                        <!-- USDT -->
+                        <div id="crypto-usdt">
+                            <div style="background: #0f172a; border-radius: 10px; padding: 14px; margin-bottom: 10px;">
+                                <p style="color: var(--accent); font-size: 0.8rem; margin-bottom: 4px;">🔷 Tron (TRC20)</p>
+                                <p style="color: var(--text-dim); font-size: 0.7rem;">Fee: <span style="color: #f97316;">$3</span></p>
+                                <p style="color: var(--text); font-size: 0.7rem; word-break: break-all; font-family: monospace; margin-top: 4px;">TApMKnFJP54z769GLGrgY17X1UN97crC8W</p>
+                            </div>
+                            <div style="background: #0f172a; border-radius: 10px; padding: 14px; margin-bottom: 10px;">
+                                <p style="color: var(--accent); font-size: 0.8rem; margin-bottom: 4px;">💠 Ethereum (ERC20)</p>
+                                <p style="color: var(--text-dim); font-size: 0.7rem;">Fee: <span style="color: #f97316;">3 USDc</span></p>
+                                <p style="color: var(--text); font-size: 0.7rem; word-break: break-all; font-family: monospace; margin-top: 4px;">0x579644ea575f13c3322be3cc266d11477e824739</p>
+                            </div>
+                            <div style="background: #0f172a; border-radius: 10px; padding: 14px; margin-bottom: 10px;">
+                                <p style="color: var(--accent); font-size: 0.8rem; margin-bottom: 4px;">⬡ Polygon (MATIC)</p>
+                                <p style="color: var(--text-dim); font-size: 0.7rem;">Fee: <span style="color: #22c55e;">Gratis</span></p>
+                                <p style="color: var(--text); font-size: 0.7rem; word-break: break-all; font-family: monospace; margin-top: 4px;">0x579644ea575f13c3322be3cc266d11477e824739</p>
+                            </div>
+                        </div>
+
+                        <!-- USDc -->
+                        <div id="crypto-usdc" style="display: none;">
+                            <div style="background: #0f172a; border-radius: 10px; padding: 14px; margin-bottom: 10px;">
+                                <p style="color: var(--accent); font-size: 0.8rem; margin-bottom: 4px;">💠 Ethereum (ERC20)</p>
+                                <p style="color: var(--text-dim); font-size: 0.7rem;">Fee: <span style="color: #f97316;">3 USDc</span></p>
+                                <p style="color: var(--text); font-size: 0.7rem; word-break: break-all; font-family: monospace; margin-top: 4px;">0x579644ea575f13c3322be3cc266d11477e824739</p>
+                            </div>
+                            <div style="background: #0f172a; border-radius: 10px; padding: 14px; margin-bottom: 10px;">
+                                <p style="color: var(--accent); font-size: 0.8rem; margin-bottom: 4px;">⬡ Polygon (MATIC)</p>
+                                <p style="color: var(--text-dim); font-size: 0.7rem;">Fee: <span style="color: #22c55e;">Gratis</span></p>
+                                <p style="color: var(--text); font-size: 0.7rem; word-break: break-all; font-family: monospace; margin-top: 4px;">0x579644ea575f13c3322be3cc266d11477e824739</p>
+                            </div>
+                        </div>
+
+                        <p style="color: var(--text-dim); font-size: 0.85rem; text-align: center;">💰 <strong>Precio: $8 USD</strong></p>
+                        
+                        <!-- Confirm payment button -->
+                        <div id="crypto-confirm-box" style="text-align:center;margin-top:12px;">
+                            <button onclick="confirmPayment('crypto', this)" class="cta-button" style="padding:10px 20px;font-size:0.8rem;background:linear-gradient(135deg,#22c55e,#16a34a);">✅ Ya pagué — Confirmar mi compra</button>
+                            <div id="crypto-confirm-status" style="margin-top:8px;font-size:0.8rem;color:var(--text-dim);"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 40px; padding: 20px; background: rgba(6,182,212,0.05); border-radius: 12px; border: 1px dashed rgba(6,182,212,0.2);">
+                <p style="color: var(--text-dim); margin: 0;">
+                    📧 ¿Problemas con tu compra? Escríbenos a <strong style="color: var(--secondary);">roxana@axistechai.com</strong> y te ayudamos en minutos.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Descarga (oculta, se activa con token) -->
+    <section class="descarga" id="descarga" style="display: none; padding: 100px 0; background: radial-gradient(circle at top, #0f1c1f 0%, #0a0a0a 100%);">
+        <div class="container" style="text-align: center;">
+            <div id="download-content">
+                <div style="font-size: 4rem; margin-bottom: 20px;">📥</div>
+                <h2 style="font-size: 2.2rem; margin-bottom: 15px;">Tu enlace de descarga</h2>
+                <p id="download-message" style="color: var(--text-dim); margin-bottom: 30px;">Validando tu enlace...</p>
+                <div id="download-button-container"></div>
+                <div id="download-info" style="margin-top: 30px; color: #555; font-size: 0.85rem;"></div>
             </div>
         </div>
     </section>
@@ -495,6 +672,7 @@
     <script src="https://www.gstatic.com/firebasejs/12.16.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/12.16.0/firebase-storage-compat.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script src="./app.js"></script>
 </body>
 </html>

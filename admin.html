@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin — SISTEMA ALFA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #06B6D4;
+            --secondary: #22D3EE;
+            --bg: #0A0A0A;
+            --bg-soft: #141414;
+            --text: #F9FAFB;
+            --text-dim: #9CA3AF;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background: var(--bg); 
+            color: var(--text); 
+            font-family: 'Inter', sans-serif; 
+            padding: 40px 20px;
+        }
+        .container { max-width: 900px; margin: 0 auto; }
+        h1 { font-size: 2rem; margin-bottom: 10px; }
+        h2 { font-size: 1.3rem; margin-bottom: 20px; color: var(--primary); }
+        .subtitle { color: var(--text-dim); margin-bottom: 40px; }
+
+        .card {
+            background: var(--bg-soft);
+            border: 1px solid #222;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 16px;
+        }
+        .field label { color: var(--secondary); font-weight: 600; font-size: 0.9rem; }
+        .field input, .field select {
+            background: #0f172a;
+            border: 1px solid #334155;
+            color: var(--text);
+            padding: 12px 14px;
+            border-radius: 10px;
+            font-size: 1rem;
+        }
+        .field input:focus, .field select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(6, 182, 212, 0.2);
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #000;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: 0.3s;
+        }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 0 20px rgba(6,182,212,0.4); }
+        .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+        .btn-danger { background: linear-gradient(135deg, #ef4444, #dc2626); }
+
+        .status {
+            padding: 12px 16px;
+            border-radius: 10px;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        .status.success { background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.3); color: #86efac; }
+        .status.error { background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); color: #fda4af; }
+        .status.info { background: rgba(6,182,212,0.1); border: 1px solid rgba(6,182,212,0.3); color: var(--secondary); }
+
+        .pdf-status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px;
+            background: #0f172a;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        .pdf-status .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+        .dot.green { background: #22c55e; }
+        .dot.red { background: #ef4444; }
+        .dot.yellow { background: #eab308; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+        th, td { padding: 12px 10px; text-align: left; border-bottom: 1px solid #222; }
+        th { color: var(--primary); text-transform: uppercase; font-size: 0.7rem; letter-spacing: 1px; }
+        td { color: var(--text-dim); }
+        .tag {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .tag.paypal { background: rgba(0,156,222,0.2); color: #009cde; }
+        .tag.transfer { background: rgba(234,179,8,0.2); color: #eab308; }
+        .tag.hotmart { background: rgba(6,182,212,0.2); color: var(--secondary); }
+        .tag.ok { background: rgba(34,197,94,0.2); color: #86efac; }
+        .tag.used { background: rgba(239,68,68,0.2); color: #fda4af; }
+
+        .historial-empty { text-align: center; padding: 40px; color: var(--text-dim); }
+
+        #login-screen {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 80vh;
+        }
+        .login-box {
+            background: var(--bg-soft);
+            border: 1px solid #222;
+            border-radius: 16px;
+            padding: 40px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        .login-box h2 { color: var(--text); margin-bottom: 20px; }
+
+        @media (max-width: 768px) {
+            .container { padding: 0; }
+            .card { padding: 20px; }
+            table { font-size: 0.75rem; }
+            th, td { padding: 8px 6px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- LOGIN SCREEN -->
+    <div id="login-screen">
+        <div class="login-box">
+            <h1 style="font-size: 1.8rem; margin-bottom: 5px;">🔐 Admin</h1>
+            <p style="color: var(--text-dim); margin-bottom: 30px;">SISTEMA ALFA — Panel de gestión</p>
+            <div class="field">
+                <label>Contraseña</label>
+                <input type="password" id="admin-password" placeholder="Ingresa la contraseña">
+            </div>
+            <button class="btn" onclick="checkPassword()">Acceder</button>
+            <p id="login-error" style="color: #fda4af; margin-top: 15px; font-size: 0.85rem; display: none;">Contraseña incorrecta</p>
+        </div>
+    </div>
+
+    <!-- ADMIN PANEL -->
+    <div id="admin-panel" style="display: none;">
+        <div class="container">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 30px;">
+                <div>
+                    <h1>⚙️ Panel Admin</h1>
+                    <p class="subtitle" style="margin-bottom: 0;">Gestión de ventas y entregas — SISTEMA ALFA</p>
+                </div>
+                <button class="btn btn-danger" onclick="logout()" style="padding: 8px 18px; font-size: 0.8rem;">🔒 Cerrar Sesión</button>
+            </div>
+
+            <!-- Card: Estado del PDF -->
+            <div class="card" id="pdf-card">
+                <h2>📄 Archivo del Producto</h2>
+                <div id="pdf-status-msg" class="pdf-status">
+                    <span class="dot yellow"></span>
+                    <span>Verificando estado del PDF...</span>
+                </div>
+                <div class="field">
+                    <label>Subir PDF (reemplaza el existente)</label>
+                    <input type="file" id="pdf-upload" accept="application/pdf">
+                </div>
+                <button class="btn" id="btn-upload-pdf" onclick="uploadPDF()" disabled>📤 Subir PDF</button>
+                <div id="pdf-status-result"></div>
+            </div>
+
+            <!-- Card: Registrar Venta Manual -->
+            <div class="card">
+                <h2>✏️ Registrar Venta Manual</h2>
+                <p style="color: var(--text-dim); margin-bottom: 20px; font-size: 0.9rem;">Para pagos recibidos por PayPal, Transferencia o Cripto — te queda el comprobante como respaldo</p>
+                
+                <div class="field">
+                    <label>📧 Email del comprador</label>
+                    <input type="email" id="buyer-email" placeholder="correo@ejemplo.com">
+                </div>
+                <div class="field">
+                    <label>💳 Método de pago</label>
+                    <select id="payment-method">
+                        <option value="paypal">💙 PayPal (@roxdevit)</option>
+                        <option value="arq">🇦🇷 ARQ / Transferencia Argentina</option>
+                        <option value="usd">🇺🇸 Cuenta USD</option>
+                        <option value="eur">🇪🇺 Cuenta EUR</option>
+                        <option value="crypto">₿ Cripto (USDT/USDc)</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label>📎 Comprobante de pago (pégalo aquí)</label>
+                    <textarea id="payment-proof" rows="3" placeholder="Ej: Transferencia de $8 USD desde PayPal usuario juan@email.com - ID transacción: ABC123..." style="background:#0f172a;border:1px solid #334155;color:var(--text);padding:12px 14px;border-radius:10px;font-size:0.9rem;width:100%;resize:vertical;"></textarea>
+                </div>
+                <div class="field">
+                    <label>📝 Nota opcional</label>
+                    <input type="text" id="payment-note" placeholder="Ej: Pagó desde Argentina, cliente nuevo">
+                </div>
+                <button class="btn" onclick="registerSale()">🚀 Generar enlace de descarga</button>
+                <div id="sale-result"></div>
+            </div>
+
+            <!-- Card: Historial -->
+            <div class="card">
+                <h2>📋 Historial de Ventas</h2>
+                <div id="sales-history">
+                    <div class="historial-empty">Cargando historial...</div>
+                </div>
+            </div>
+
+            <!-- Card: Verificaciones Pendientes -->
+            <div class="card" id="pending-card">
+                <h2>⏳ Verificaciones Pendientes</h2>
+                <p style="color: var(--text-dim); margin-bottom: 20px; font-size: 0.9rem;">Usuarios que marcaron "Ya pagué" — revisa y aprueba o rechaza</p>
+                <div id="pending-list">
+                    <div class="historial-empty">Cargando pendientes...</div>
+                </div>
+            </div>
+
+            <!-- Card: Leads Capturados -->
+            <div class="card" id="leads-card">
+                <h2>📧 Leads Capturados</h2>
+                <p style="color: var(--text-dim); margin-bottom: 20px; font-size: 0.9rem;">Personas que ingresaron su email para ver los datos de pago</p>
+                <div id="leads-list">
+                    <div class="historial-empty">Cargando leads...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/12.16.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/12.16.0/firebase-storage-compat.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="./admin.js"></script>
+</body>
+</html>
+
